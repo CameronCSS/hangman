@@ -1,0 +1,98 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+img {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+.message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #ff0000;
+}
+
+.success {
+    text-align: center;
+    font-size: 1.2em;
+    color: #0d8415;
+}
+
+
+.red {
+    color: #ff0000;
+}
+
+.game-info {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.guess-form, .reset-form {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1.2em;
+    width: 50px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.new-game-btn {
+    background-color: #28a745;
+}
+
+.new-game-btn:hover {
+    background-color: #218838;
+}
+
+.guessed-letters-box {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    text-align: center;
+}
