@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Focus the input box when the page loads
             document.querySelector('input[name="guess"]').focus();
         });
     </script>
@@ -16,26 +15,32 @@
     <div class="container">
         <h1>Welcome to Hangman!</h1>
 
-        <!-- Dynamically set the hangman image source based on remaining attempts -->
-        <img src="{{ url_for('static', filename='hangman' ~ (8 - game.attempts) ~ '.png') }}" alt="hangman" height="100">
+        <!-- Display the hangman image based on attempts -->
+        <img src="{{ url_for('static', filename='hangman' + (8 - attempts) | string + '.png') }}" alt="Hangman" height="100">
 
         <p class="message">{{ message }}</p>
         <p class="success">{{ success }}</p>
         <div class="game-info">
-            <p>Attempts remaining: <span>{{ game.attempts }}</span></p>
-            <p>Word: <span>{{ game.word_display | join(' ') }}</span></p>
+            <p class="red">Attempts remaining: <span>{{ attempts }}</span></p>
+            <p>Word: <span>{{ word_display | join(' ') }}</span></p>
         </div>
+
         <form method="post" class="guess-form">
+            <input type="hidden" name="word" value="{{ word }}">
+            <input type="hidden" name="word_display" value="{{ word_display | join(',') }}">
+            <input type="hidden" name="attempts" value="{{ attempts }}">
+            <input type="hidden" name="guessed_letters" value="{{ guessed_letters | join(',') }}">
             <input type="text" name="guess" maxlength="1" required autofocus>
             <input type="submit" value="Guess">
         </form>
+
         <form action="{{ url_for('reset') }}" method="post" class="reset-form">
             <input type="submit" value="Start New Game" class="new-game-btn">
         </form>
     </div>
     <div class="guessed-letters-box">
         <p>Guessed letters:</p>
-        <span>{{ game.guessed_letters | join(', ') }}</span>
+        <span>{{ guessed_letters | join(', ') }}</span>
     </div>
 </body>
 </html>
