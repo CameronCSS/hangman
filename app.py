@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for
 import random
 
 app = Flask(__name__, static_url_path='/static')
@@ -21,38 +21,46 @@ def new_game():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if 'game' not in session:
-        session['game'] = new_game()
+    # Initialize game state
+    game = new_game()
 
-    game = session['game']
     if request.method == 'POST':
-        if 'guess' in request.form:
-            guess = request.form['guess'].lower()
-            if guess in game['guessed_letters']:
-                return render_template('index.html', game=game, message=f"You've already guessed '{guess}'")
+        # Load existing game state from URL parameters
+        word = request.form.get('word', '')
+        word_display = request.form.getlist('word_display')
+        attempts = int(request.form.get('attempts', 8))
+        guessed_letters = request.form.getlist('guessed_letters')
 
-            if guess in game['word']:
-                game['guessed_letters'].append(guess)
-                for index, letter in enumerate(game['word']):
+        # Handle new guess
+        guess = request.form['guess'].lower()
+        if guess in guessed_letters:
+            message = f"You've already guessed '{guess}'"
+        else:
+            if guess in word:
+                guessed_letters.append(guess)
+                for index, letter in enumerate(word):
                     if letter == guess:
-                        game['word_display'][index] = guess
+                        word_display[index] = guess
             else:
-                game['guessed_letters'].append(guess)
-                game['attempts'] -= 1
+                guessed_letters.append(guess)
+                attempts -= 1
 
-            if '_' not in game['word_display']:
-                return render_template('index.html', game=game, success="Congratulations, you guessed the word!")
-            elif game['attempts'] <= 0:
-                return render_template('index.html', game=game, message=f"Game over! The word was '{game['word']}'")
-            
-            session['game'] = game
-
-    return render_template('index.html', game=session['game'])
+            if '_' not in word_display:
+                success = "Congratulations, you guessed the word!"
+                return render_template('index.html', word=word, word_display=word_display, attempts=attempts, guessed_letters=guessed_letters, success=success)
+            elif attempts <= 0:
+                message = f"Game over! The word was '{word}'"
+                return render_template('index.html', word=word, word_display=word_display, attempts=attempts, guessed_letters=guessed_letters, message=message)
+        
+        # Render template with updated state
+        return render_template('index.html', word=word, word_display=word_display, attempts=attempts, guessed_letters=guessed_letters, message=message)
+    
+    # Render template for initial game state
+    return render_template('index.html', word='', word_display=['_'*5], attempts=8, guessed_letters=[], message='')
 
 @app.route('/reset', methods=['POST'])
 def reset():
-    session.pop('game', None)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-	app.run(host="0.0.0.0", port=int("80"), debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
