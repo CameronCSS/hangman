@@ -17,7 +17,7 @@
         <h1>Welcome to Hangman!</h1>
 
         <!-- Display the hangman image based on attempts -->
-        <img src="{{ url_for('static', filename='hangman' + str(8 - attempts) + '.png') }}" alt="Hangman" height="100">
+        <img src="{{ url_for('static', filename='hangman' + (8 - attempts) | string + '.png') }}" alt="Hangman" height="100">
 
         <p class="message">{{ message }}</p>
         <div class="game-info">
