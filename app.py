@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 words = [
     "python", "java", "javascript", "svelte", "ruby",
@@ -55,4 +55,4 @@ def reset():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+	app.run(host="0.0.0.0", port=int("80"), debug=True)
