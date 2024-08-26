@@ -78,11 +78,11 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.new-game-btn {
+.new-game-btn, button {
     background-color: #28a745;
 }
 
-.new-game-btn:hover {
+.new-game-btn:hover, button:hover {
     background-color: #218838;
 }
 
@@ -98,13 +98,12 @@ input[type="submit"]:hover {
 }
 
 
-/* Button styles */
-.button-link {
+.button-link, button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff; /* Blue background */
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -113,10 +112,9 @@ input[type="submit"]:hover {
 }
 
 .button-link:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }
 
-/* Ensure no default link styling */
 a {
     color: inherit;
     text-decoration: none;
