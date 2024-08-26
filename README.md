@@ -10,7 +10,7 @@
 
 ### Welcome to the Flask Hangman Game! 
 
-This simple web application lets you play a classic game of Hangman using Flask, a popular web framework in Python. 
+This simple web application lets you play a classic game of Hangman using Flask.
 <br>
 The game features a randomly selected word from a predefined list, and you have a limited number of attempts to guess the word correctly.
 
