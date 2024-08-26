@@ -21,8 +21,8 @@ The game features a randomly selected word from a predefined list, and you have 
 * **Random Word Selection:** The game selects a word randomly from a predefined list of words.
 * **Interactive Gameplay:** Guess letters and see them appear in the word if correct.
 * **Attempt Tracking:** Keep track of your remaining attempts.
+* **User Feedback:** Onscreen info about your guesses and game status.
 * **Game Reset:** Easily restart the game at any time.
-* **User Feedback:** Receive messages about your guesses and game status.
 
 
 
@@ -54,9 +54,14 @@ To run this application locally, follow these steps:
   Open your web browser and navigate to http://127.0.0.1:5000.
   ```
 
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## How It Works
-Flask is doing all the work using flask routes.
+#### Basic Python code is used for all the game logic
+#### Local storage (in browser) is used to save current game information
+#### Flask is doing everything else using flask routes.
 <br>
+
 **Routes:**
 - /: Handles both GET and POST requests for playing the game and resetting.
 - /reset: Handles the reset of the game session.
